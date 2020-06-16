@@ -26,6 +26,7 @@ jobs:
     - name: Build image
       run: docker build . -t meal-diary/backend
     - name: Create env file
-      run: echo "" > ci.env
+      env:
+        AUTH0_CLIENT_ID: ${{secrets.AUTH0_CLIENT_ID}}
     - name: Run tests
-      run: docker run --network container:ci_mongo --env-file ci.env meal-diary/backend npm run test:ci
+      run: docker run --network container:ci_mongo -e AUTH0_CLIENT_ID="$AUTH0_CLIENT_ID}" meal-diary/backend npm run test:ci
