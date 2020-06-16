@@ -22,7 +22,7 @@ jobs:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
     - name: Start mongo
-      run: docker-compose up -d -f ci/docker-compose.yml
+      run: docker-compose up -d
     - name: Build image
       run: docker build . -t meal-diary/backend
     - name: Create env file
