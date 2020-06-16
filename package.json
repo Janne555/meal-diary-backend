@@ -6,10 +6,8 @@
   "scripts": {
     "test": "./node_modules/jest/bin/jest.js --watchAll=true",
     "test:coverage": "npm test -- --watchAll=false --collect-coverage",
-    "start": "NODE_ENV=development concurrently \"npm run watch:compile\" \"npm run watch:js\"",
-    "watch:js": "nodemon -r dotenv/config ./build/index.js dotenv_config_path=./dev.env",
-    "watch:compile": "tsc --watch",
-    "watch:codegen": "watch \"npm run codegen\" ./src",
+    "start": "nodemon -r dotenv/config ./src/index.ts dotenv_config_path=./dev.env",
+    "start:poll": "nodemon -L -r dotenv/config ./src/index.ts dotenv_config_path=./dev.env",
     "codegen": "graphql-codegen --config codegen.yml"
   },
   "author": "",

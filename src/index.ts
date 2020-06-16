@@ -16,5 +16,5 @@ db.once('open', function () {
 })
 
 const listener = app.listen(4000, () => {
-  console.log(`🚀 Server listening at ${listener.address()}`)
+  console.log(`🚀 Server listening at ${JSON.stringify(listener.address())}`)
 })
