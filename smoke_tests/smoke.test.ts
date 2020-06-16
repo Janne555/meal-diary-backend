@@ -14,6 +14,10 @@ beforeAll(async () => {
   await mongoose.connect(`${env.MONGO_URI}/${env.APP_NAME}`)
 })
 
+afterAll(async () => {
+  await mongoose.connection.close()
+}
+
 describe('smoke test', () => {
   beforeEach(async () => {
     const ds = new FoodDataSource({ userId: "Fineli" } as any)
