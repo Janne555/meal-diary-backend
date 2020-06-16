@@ -16,7 +16,7 @@ beforeAll(async () => {
 
 afterAll(async () => {
   await mongoose.connection.close()
-}
+})
 
 describe('smoke test', () => {
   beforeEach(async () => {
