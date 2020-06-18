@@ -8,7 +8,7 @@ import { Food } from "../types/generated"
 import iconv from 'iconv-lite'
 
 type ReadResult = Promise<{ data: Buffer, entry: AdmZip.IZipEntry }>
-type ParseResult = Promise<{ result: papa.ParseResult, entry: AdmZip.IZipEntry }>
+type ParseResult = Promise<{ result: papa.ParseResult<Record<string, string>>, entry: AdmZip.IZipEntry }>
 type DecodeResult = Promise<{
   data: string
   entry: AdmZip.IZipEntry
@@ -137,7 +137,7 @@ function downloadRawFineliData(useFileIfFound?: true): Promise<Fineli.ParsedFine
     async function toJSONAsync(decodeResult: DecodeResult): ParseResult {
       const { data, entry } = await decodeResult
       return new Promise((resolve, reject) => {
-        papa.parse(data, {
+        papa.parse<Record<string, string>>(data, {
           header: true,
           complete: result => {
             resolve({ result, entry })
