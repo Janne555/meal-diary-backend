@@ -1,9 +1,0 @@
-FROM node:12
-
-WORKDIR /app
-
-ADD . /app
-
-RUN npm install
-RUN node_modules/typescript/bin/tsc
-CMD ["npm", "run", "start:prod"]

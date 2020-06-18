@@ -15,6 +15,6 @@ db.once('open', function () {
   console.log("mongodb connection established")
 })
 
-const listener = app.listen(4000, () => {
+const listener = app.listen(Number(env.PORT), () => {
   console.log(`🚀 Server listening at ${JSON.stringify(listener.address())}`)
 })
