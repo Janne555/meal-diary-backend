@@ -1,0 +1,22 @@
+name: Staging
+
+on:
+  push:
+    branches: [ staging ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Install heroku cli
+      run: npm install -g heroku
+
+    - name: Deploy staging app to heroku
+      env:
+        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+      run: |
+        heroku git:remote -a meal-diary-backend-staging
+        git push heroku master
