@@ -31,3 +31,4 @@ RUN if [ "$USER_GID" != "1000" ] || [ "$USER_UID" != "1000" ]; then \
 
 RUN npm install --global typescript
 RUN npm install --global ts-node
+RUN npm install -g heroku
