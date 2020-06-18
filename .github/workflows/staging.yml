@@ -18,5 +18,7 @@ jobs:
       env:
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
       run: |
+        git add .
+        git commit -m"dummy commit for heroku"
         heroku git:remote -a meal-diary-backend-staging
         git push heroku master
