@@ -11,16 +11,16 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Install heroku cli
-      run: sudo npm install -g heroku
-
-    - name: Deploy staging app to heroku
+    - name: Login to Heroku Container Registry
       env:
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-      run: |
-        git config user.name "staging-action"
-        git config user.email "staging@action.com"
-        git add .
-        git commit --allow-empty -m"dummy commit for heroku"
-        heroku git:remote -a meal-diary-backend-staging
-        git push heroku staging
+      run: heroku container:login
+
+    - name: Build and push
+      env:
+        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+      run: heroku container:push -a meal-diary-backend-staging web
+    - name: Release
+      env:
+        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+      run: heroku container:release -a meal-diary-backend-staging web
